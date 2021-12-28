@@ -1,7 +1,25 @@
+import { useState, useEffect } from 'react';
 import './app.css';
+import DefStation from './service/def_station';
+import Map from './components/map';
 
-const App = () => {
-  return <h1>hello</h1>;
+const App = ({ map }) => {
+  const [defStations, setDefStations] = useState([]);
+
+  useEffect(() => {
+    const datas = new DefStation();
+    datas
+      .fetchData() //
+      .then(value => {
+        setDefStations(value.data.data);
+      });
+  }, []);
+
+  return (
+    <>
+      <Map map={map} defStations={defStations} />
+    </>
+  );
 };
 
 export default App;

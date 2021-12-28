@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.module.css';
 import App from './app';
-import DefStation from './service/def_station';
+import KakaoMap from './service/kakao_map';
 
-const defStation = new DefStation();
+const map = new KakaoMap();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App defStation={defStation} />
+    <App map={map} />
   </React.StrictMode>,
   document.getElementById('root')
 );
