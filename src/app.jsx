@@ -41,8 +41,8 @@ const App = ({ map }) => {
 
   return (
     <div>
-      <Map map={map} gasStation={gasStation} />
-      <Buttons gasStation={gasStation} onButtonClick={localSearch} />
+      <Map local={local} map={map} gasStation={gasStation} />
+      <Buttons local={local} onButtonClick={localSearch} />
     </div>
   );
 };

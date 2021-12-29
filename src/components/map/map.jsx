@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-const Map = ({ map, defStations }) => {
+const Map = ({ local, map, gasStation }) => {
   const container = useRef(null);
 
   useEffect(() => {
