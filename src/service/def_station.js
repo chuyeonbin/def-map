@@ -7,9 +7,10 @@ class DefStation {
     this.key = process.env.REACT_APP_DEF_API_KEY;
   }
   async fetchData() {
-    return axios.get(
+    const datas = await axios.get(
       `https://api.odcloud.kr/api/uws/v1/inventory?page=${this.page}&perPage=${this.perPage}&serviceKey=${this.key}`
     );
+    return datas.data.data;
   }
 }
 
