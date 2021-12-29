@@ -11,7 +11,7 @@ const Map = ({ map, defStations }) => {
     <div
       ref={container}
       className="map"
-      style={{ width: '500px', height: '500px' }}
+      style={{ width: '50%', height: '500px' }}
     ></div>
   );
 };
