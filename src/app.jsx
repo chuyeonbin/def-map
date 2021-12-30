@@ -28,7 +28,15 @@ const App = ({ map }) => {
   const [gasStation, setGasStation] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const localSearch = area => {};
+  const updateMap = area => {
+    setGasStation(gasStation => {
+      if (gasStation !== local[area]) {
+        map.deleteMarkers();
+        return local[area];
+      }
+      return gasStation;
+    });
+  };
 
   useEffect(() => {
     const datas = new DefStation();
@@ -48,7 +56,7 @@ const App = ({ map }) => {
       ) : (
         <Map local={local} map={map} gasStation={gasStation} />
       )}
-      <Buttons local={local} onButtonClick={localSearch} />
+      <Buttons local={local} onButtonClick={updateMap} />
     </div>
   );
 };

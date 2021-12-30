@@ -20,11 +20,15 @@ class KakaoMap {
   }
 
   addMarkers(positions) {
-    const makers = positions.map(
+    this.markers = positions.map(
       ({ lat, lng }) =>
         new this.maps.Marker({ position: new this.maps.LatLng(lat, lng) })
     );
-    this.clusterer.addMarkers(makers);
+    this.clusterer.addMarkers(this.markers);
+  }
+
+  deleteMarkers() {
+    this.clusterer.removeMarkers(this.markers);
   }
 }
 

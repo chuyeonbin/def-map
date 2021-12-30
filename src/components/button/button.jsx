@@ -1,11 +1,15 @@
 import React from 'react';
 import styles from './button.module.css';
 
-const Button = ({ area }) => {
+const Button = ({ area, onButtonClick }) => {
+  const onClick = () => {
+    onButtonClick(area);
+  };
+
   return (
-    <li className={styles.list}>
-      <button className={styles.button}>{area}</button>
-    </li>
+    <button onClick={onClick} className={styles.button}>
+      {area}
+    </button>
   );
 };
 

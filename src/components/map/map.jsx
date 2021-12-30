@@ -9,8 +9,11 @@ const Map = ({ local, map, gasStation }) => {
   useEffect(() => {
     map.setMap(container);
     map.setClusterer();
-    map.addMarkers(positions);
   }, []);
+
+  useEffect(() => {
+    map.addMarkers(positions);
+  }, [gasStation]);
 
   return (
     <div
