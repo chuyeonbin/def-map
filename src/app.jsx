@@ -28,7 +28,8 @@ const App = ({ map }) => {
   const [gasStation, setGasStation] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const updateMap = area => {
+  //클러스터 업데이트
+  const updateClusterer = area => {
     setGasStation(gasStation => {
       if (gasStation !== local[area]) {
         map.deleteMarkers();
@@ -56,7 +57,7 @@ const App = ({ map }) => {
       ) : (
         <Map local={local} map={map} gasStation={gasStation} />
       )}
-      <Buttons local={local} onButtonClick={updateMap} />
+      <Buttons local={local} onButtonClick={updateClusterer} />
     </div>
   );
 };
