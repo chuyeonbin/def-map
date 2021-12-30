@@ -26,6 +26,7 @@ const local = {
 
 const App = ({ map }) => {
   const [gasStation, setGasStation] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const localSearch = area => {};
 
@@ -34,46 +35,51 @@ const App = ({ map }) => {
     datas
       .fetchData() //
       .then(value => {
-        value.forEach(item => addrFilter(item.addr));
+        value.forEach(item => addrFilter(item));
         setGasStation(local['경기']);
+        setLoading(false);
       });
   }, []);
 
   return (
     <div>
-      <Map local={local} map={map} gasStation={gasStation} />
+      {loading === true ? (
+        <div>로딩중...</div>
+      ) : (
+        <Map local={local} map={map} gasStation={gasStation} />
+      )}
       <Buttons local={local} onButtonClick={localSearch} />
     </div>
   );
 };
 
 //지역별로 배열에 필터링
-function addrFilter(addr) {
-  const area = addr.substring(0, 2);
+function addrFilter(item) {
+  const area = item.addr.substring(0, 2);
   if (!local[area]) {
     if (area === '평택') {
-      local['경기'].push(addr);
+      local['경기'].push(item);
       return;
     }
     switch (area) {
       case '경상':
-        addr.substring(2, 4) === '북도'
-          ? local['경북'].push(addr)
-          : local['경남'].push(addr);
+        item.addr.substring(2, 4) === '북도'
+          ? local['경북'].push(item)
+          : local['경남'].push(item);
         return;
       case '전라':
-        addr.substring(2, 4) === '북도'
-          ? local['전북'].push(addr)
-          : local['전남'].push(addr);
+        item.addr.substring(2, 4) === '북도'
+          ? local['전북'].push(item)
+          : local['전남'].push(item);
         return;
       case '충청':
-        addr.substring(2, 4) === '북도'
-          ? local['충북'].push(addr)
-          : local['충남'].push(addr);
+        item.addr.substring(2, 4) === '북도'
+          ? local['충북'].push(item)
+          : local['충남'].push(item);
         return;
     }
   }
-  local[area].push(addr);
+  local[area].push(item);
 }
 
 export default App;

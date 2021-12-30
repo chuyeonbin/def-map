@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 const Map = ({ local, map, gasStation }) => {
   const container = useRef(null);
-
+  console.log(gasStation);
   useEffect(() => {
     map.setMap(container);
   }, []);
