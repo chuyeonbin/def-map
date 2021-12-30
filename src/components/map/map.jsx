@@ -2,9 +2,14 @@ import React, { useEffect, useRef } from 'react';
 
 const Map = ({ local, map, gasStation }) => {
   const container = useRef(null);
-  console.log(gasStation);
+
+  //주유소 위도 경도
+  const positions = gasStation.map(item => ({ lat: item.lat, lng: item.lng }));
+
   useEffect(() => {
     map.setMap(container);
+    map.setClusterer();
+    map.addMarkers(positions);
   }, []);
 
   return (
