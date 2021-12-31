@@ -7,7 +7,7 @@ const Buttons = ({ local, onButtonClick }) => {
     <ul className={styles.buttons}>
       {Object.keys(local).map(item => (
         <li key={item}>
-          <Button area={item} onButtonClick={onButtonClick} />
+          <Button name={item} onButtonClick={onButtonClick} />
         </li>
       ))}
     </ul>
