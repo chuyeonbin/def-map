@@ -3,6 +3,7 @@ import './app.css';
 import DefStation from './service/def_station';
 import Map from './components/map/map';
 import Buttons from './components/buttons/buttons';
+import CardList from './components/card_list/card_list';
 
 const local = {
   강원: [],
@@ -58,6 +59,7 @@ const App = ({ map }) => {
         <Map local={local} map={map} gasStation={gasStation} />
       )}
       <Buttons local={local} onButtonClick={updateClusterer} />
+      <CardList gasStation={gasStation} />
     </div>
   );
 };
