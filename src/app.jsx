@@ -51,13 +51,11 @@ const App = ({ map }) => {
       });
   }, []);
 
-  return (
+  return loading === true ? (
+    <div>로딩중...</div>
+  ) : (
     <div>
-      {loading === true ? (
-        <div>로딩중...</div>
-      ) : (
-        <Map local={local} map={map} gasStation={gasStation} />
-      )}
+      <Map local={local} map={map} gasStation={gasStation} />
       <Buttons local={local} onButtonClick={updateClusterer} />
       <CardList gasStation={gasStation} />
     </div>

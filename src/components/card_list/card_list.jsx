@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Card from '../card/card';
 
 const CardList = ({ gasStation }) => {
   useEffect(() => {
@@ -6,9 +7,9 @@ const CardList = ({ gasStation }) => {
   }, [gasStation]);
   return (
     <ul>
-      {Object.keys(gasStation).map(item => {
-        // <Card key={item.code} card={item} />
-      })}
+      {gasStation.map(item => (
+        <Card key={item.code} card={item} />
+      ))}
     </ul>
   );
 };
