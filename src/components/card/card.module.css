@@ -1,6 +1,6 @@
 @value borderRadius from '../../common/size.css';
 @value micro, small, large, medium from '../../common/size.css';
-@value colorBlack, colorblue, colorGrey, colorLightGrey, boxShadow from '../../common/color.css';
+@value colorBlack, colorRed, colorBlue, colorGrey, colorLightGrey, boxShadow from '../../common/color.css';
 
 .card {
   margin-bottom: 1rem;
@@ -35,9 +35,21 @@
   color: colorGrey;
 }
 
+.blue {
+  color: colorBlue;
+}
+
+.red {
+  color: colorRed;
+}
+
 .inventory,
 .price {
   font-weight: bold;
+}
+
+.price > span {
+  color: colorBlue;
 }
 
 .inventory,

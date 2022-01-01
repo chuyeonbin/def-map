@@ -7,10 +7,25 @@ const Card = ({ card }) => {
     <li className={styles.card}>
       <header className={styles.header}>
         <h2 className={styles.name}>{name}</h2>
-        <p className={styles.inventory}>재고량:{inventory}L</p>
+        <p className={styles.inventory}>
+          {inventory == 0 ? (
+            <span className={styles.red}>매진</span>
+          ) : (
+            <>
+              재고량:<span className={styles.blue}>{inventory}</span>L
+            </>
+          )}
+        </p>
       </header>
       <div className={styles.contents}>
-        <p className={styles.price}>1L {price || 0}원</p>
+        <p className={styles.price}>
+          1L{' '}
+          {price === 'undefined' || price === null ? (
+            <span>가격정보없음</span>
+          ) : (
+            <span>{price}원</span>
+          )}
+        </p>
         <p className={styles.address}>{addr}</p>
         <p className={styles.tel}>{tel}</p>
       </div>
