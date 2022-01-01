@@ -1,0 +1,12 @@
+@value colorBlue from '../../common/color.css';
+@value regular from '../../common/size.css';
+
+.header {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-size: regular;
+  color: colorBlue;
+}

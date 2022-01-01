@@ -1,0 +1,8 @@
+@value borderRadius from '../../common/size.css';
+@value boxShadow from '../../common/color.css';
+
+.map {
+  margin-bottom: 2.5rem;
+  border-radius: borderRadius;
+  box-shadow: 6px 6px 8px 0px boxShadow;
+}

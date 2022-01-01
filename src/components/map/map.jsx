@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import styles from './map.module.css';
 
 const Map = ({ local, map, gasStation }) => {
   const container = useRef(null);
@@ -18,8 +19,8 @@ const Map = ({ local, map, gasStation }) => {
   return (
     <div
       ref={container}
-      className="map"
-      style={{ width: '50%', height: '500px' }}
+      className={styles.map}
+      style={{ width: '100%', height: '400px' }}
     ></div>
   );
 };

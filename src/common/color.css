@@ -2,7 +2,7 @@
 @value colorBlack: black;
 @value colorRed: red;
 @value colorBlue: #1B29DB;
-@value colorGrey: #6F6F6F;
+@value colorGrey: #5C5C5C;
 @value colorLightGrey: #BABABA;
 
-@value makerShadow: rgba(217, 217, 217, 1);
+@value boxShadow: rgba(217, 217, 217, 0.7);

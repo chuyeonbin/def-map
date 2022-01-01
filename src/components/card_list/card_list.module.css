@@ -1,0 +1,16 @@
+@value regular from '../../common/size.css';
+
+.section {
+  padding: 1rem;
+}
+
+.title {
+  font-size: regular;
+  margin-bottom: 1rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}

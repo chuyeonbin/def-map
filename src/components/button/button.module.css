@@ -1,0 +1,22 @@
+@value medium from '../../common/size.css';
+@value colorBlue from '../../common/color.css';
+@value colorWhite from '../../common/color.css';
+@value colorBlack from '../../common/color.css';
+@value boxShadow from '../../common/color.css';
+
+.button {
+  padding: 1rem;
+  width: 160px;
+  border: 2px solid colorBlue;
+  border-radius: 30px;
+  background-color: colorWhite;
+  font-size: small;
+  color: colorBlue;
+  box-shadow: 6px 6px 8px 0px boxShadow;
+}
+
+.button:hover,
+.button.selected {
+  color: colorWhite;
+  background-color: colorBlue;
+}

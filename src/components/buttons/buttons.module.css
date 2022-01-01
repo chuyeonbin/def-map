@@ -1,0 +1,17 @@
+@value regular from '../../common/size.css';
+
+.title {
+  margin-bottom: 1rem;
+  font-size: regular;
+}
+
+.buttons {
+  padding-bottom: 1rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.list {
+  margin-right: 1rem;
+}

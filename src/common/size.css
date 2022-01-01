@@ -1,5 +1,8 @@
 /* Font Size */
-@value micro: 8px;
-@value small: 12px;
+@value micro: 10px;
+@value small: 14px;
+@value large: 16px;
 @value medium: 18px;
 @value regular: 24px;
+
+@value borderRadius: 16px;

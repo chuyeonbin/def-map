@@ -1,0 +1,58 @@
+@value borderRadius from '../../common/size.css';
+@value micro, small, large, medium from '../../common/size.css';
+@value colorBlack, colorblue, colorGrey, colorLightGrey, boxShadow from '../../common/color.css';
+
+.card {
+  margin-bottom: 1rem;
+  padding: 1.25rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  border-radius: borderRadius;
+  box-shadow: 6px 6px 8px 2px boxShadow;
+  cursor: pointer;
+  transition: transform 150ms ease-in;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.name {
+  max-width: 50%;
+  font-size: medium;
+}
+
+.inventory {
+  color: colorGrey;
+}
+
+.inventory,
+.price {
+  font-weight: bold;
+}
+
+.inventory,
+.contents {
+  font-size: small;
+}
+
+.contents {
+  color: colorGrey;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: micro;
+  color: colorLightGrey;
+}

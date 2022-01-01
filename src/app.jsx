@@ -7,8 +7,8 @@ import CardList from './components/card_list/card_list';
 import Header from './components/header/header';
 
 const local = {
-  강원: [],
   경기: [],
+  강원: [],
   경남: [],
   경북: [],
   광주: [],
@@ -55,7 +55,7 @@ const App = ({ map }) => {
   return loading === true ? (
     <div>로딩중...</div>
   ) : (
-    <div>
+    <div className="container">
       <Header />
       <Map local={local} map={map} gasStation={gasStation} />
       <Buttons local={local} onButtonClick={updateClusterer} />
