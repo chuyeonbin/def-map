@@ -5,11 +5,11 @@
 .card {
   margin-bottom: 1rem;
   padding: 1.25rem;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 300px;
+  width: 100%;
+  height: 160px;
   border-radius: borderRadius;
   box-shadow: 6px 6px 8px 2px boxShadow;
   cursor: pointer;
@@ -67,4 +67,16 @@
   justify-content: space-between;
   font-size: micro;
   color: colorLightGrey;
+}
+
+@media (min-width: 700px) {
+  .card {
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card {
+    width: 33.33333%;
+  }
 }
