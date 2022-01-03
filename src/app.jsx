@@ -32,6 +32,8 @@ const App = ({ map }) => {
 
   //클러스터 업데이트
   const updateClusterer = area => {
+    map.setLevel();
+    map.setCenter();
     setGasStation(gasStation => {
       if (gasStation !== local[area]) {
         map.deleteMarkers();

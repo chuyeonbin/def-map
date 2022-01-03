@@ -19,6 +19,14 @@ class KakaoMap {
     });
   }
 
+  setCenter() {
+    this.map.setCenter(new this.maps.LatLng(36.2683, 127.6358));
+  }
+
+  setLevel() {
+    this.map.setLevel(13);
+  }
+
   addMarkers(positions) {
     this.markers = positions.map(
       ({ lat, lng }) =>
