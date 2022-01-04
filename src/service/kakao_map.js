@@ -19,12 +19,12 @@ class KakaoMap {
     });
   }
 
-  setCenter() {
-    this.map.setCenter(new this.maps.LatLng(36.2683, 127.6358));
+  setCenter(lat, lng) {
+    this.map.setCenter(new this.maps.LatLng(lat, lng));
   }
 
-  setLevel() {
-    this.map.setLevel(13);
+  setLevel(level) {
+    this.map.setLevel(level);
   }
 
   addMarkers(positions) {

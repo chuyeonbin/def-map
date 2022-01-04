@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './card.module.css';
 
-const Card = ({ card }) => {
+const Card = ({ card, showCard }) => {
+  const onClick = event => {
+    showCard(card);
+  };
   const { addr, inventory, name, price, openTime, regDt, tel } = card;
   return (
-    <li className={styles.card}>
+    <li className={styles.card} onClick={onClick}>
       <header className={styles.header}>
         <h2 className={styles.name}>{name}</h2>
         <p className={styles.inventory}>

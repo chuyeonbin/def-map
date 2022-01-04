@@ -32,8 +32,8 @@ const App = ({ map }) => {
 
   //클러스터 업데이트
   const updateClusterer = area => {
-    map.setLevel();
-    map.setCenter();
+    map.setLevel(13);
+    map.setCenter(36.2683, 127.6358);
     setGasStation(gasStation => {
       if (gasStation !== local[area]) {
         map.deleteMarkers();
@@ -41,6 +41,12 @@ const App = ({ map }) => {
       }
       return gasStation;
     });
+  };
+
+  const showCard = card => {
+    map.setLevel(1);
+    map.setCenter(card.lat, card.lng);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
@@ -61,7 +67,7 @@ const App = ({ map }) => {
       <Header />
       <Map local={local} map={map} gasStation={gasStation} />
       <Buttons local={local} onButtonClick={updateClusterer} />
-      <CardList gasStation={gasStation} />
+      <CardList gasStation={gasStation} showCard={showCard} />
     </div>
   );
 };
