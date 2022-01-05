@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './card.module.css';
 
 const Card = ({ card, showCard }) => {
-  const onClick = event => {
+  const onClick = () => {
     showCard(card);
   };
   const { addr, inventory, name, price, openTime, regDt, tel } = card;

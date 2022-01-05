@@ -6,56 +6,32 @@ import Buttons from './components/buttons/buttons';
 import CardList from './components/card_list/card_list';
 import Header from './components/header/header';
 
-const local = {
-  경기: [],
-  강원: [],
-  경남: [],
-  경북: [],
-  광주: [],
-  대구: [],
-  대전: [],
-  부산: [],
-  서울: [],
-  세종: [],
-  울산: [],
-  인천: [],
-  전남: [],
-  전북: [],
-  제주: [],
-  충남: [],
-  충북: [],
-};
+const datas = new DefStation();
 
-const App = ({ map }) => {
+const App = () => {
   const [gasStation, setGasStation] = useState([]);
+  const [clickCard, setClickCard] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  //클러스터 업데이트
-  const updateClusterer = area => {
-    map.setLevel(13);
-    map.setCenter(36.2683, 127.6358);
-    setGasStation(gasStation => {
-      if (gasStation !== local[area]) {
-        map.deleteMarkers();
-        return local[area];
-      }
-      return gasStation;
-    });
+  //주유소 업데이트
+  const updateGasStation = area => {
+    setGasStation([]);
+    datas
+      .fetchData(area) //
+      .then(value => {
+        setGasStation(value);
+      });
   };
 
   const showCard = card => {
-    map.setLevel(1);
-    map.setCenter(card.lat, card.lng);
-    window.scrollTo(0, 0);
+    setClickCard(card);
   };
 
   useEffect(() => {
-    const datas = new DefStation();
     datas
-      .fetchData() //
+      .fetchData('경기') //
       .then(value => {
-        value.forEach(item => addrFilter(item));
-        setGasStation(local['경기']);
+        setGasStation(value);
         setLoading(false);
       });
   }, []);
@@ -65,40 +41,11 @@ const App = ({ map }) => {
   ) : (
     <div className="container">
       <Header />
-      <Map local={local} map={map} gasStation={gasStation} />
-      <Buttons local={local} onButtonClick={updateClusterer} />
+      <Map gasStation={gasStation} clickCard={clickCard} />
+      <Buttons onButtonClick={updateGasStation} />
       <CardList gasStation={gasStation} showCard={showCard} />
     </div>
   );
 };
-
-//지역별로 배열에 필터링
-function addrFilter(item) {
-  const area = item.addr.substring(0, 2);
-  if (!local[area]) {
-    if (area === '평택') {
-      local['경기'].push(item);
-      return;
-    }
-    switch (area) {
-      case '경상':
-        item.addr.substring(2, 4) === '북도'
-          ? local['경북'].push(item)
-          : local['경남'].push(item);
-        return;
-      case '전라':
-        item.addr.substring(2, 4) === '북도'
-          ? local['전북'].push(item)
-          : local['전남'].push(item);
-        return;
-      case '충청':
-        item.addr.substring(2, 4) === '북도'
-          ? local['충북'].push(item)
-          : local['충남'].push(item);
-        return;
-    }
-  }
-  local[area].push(item);
-}
 
 export default App;
