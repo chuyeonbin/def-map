@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './app.css';
 import DefStation from './service/def_station';
 import Map from './components/map/map';
@@ -13,13 +13,20 @@ const App = () => {
   const [clickCard, setClickCard] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const prevRef = useRef('경기');
+
   //주유소 업데이트
   const updateGasStation = area => {
-    setGasStation([]);
     datas
       .fetchData(area) //
       .then(value => {
-        setGasStation(value);
+        setGasStation(gasStation => {
+          if (area !== prevRef.current) {
+            return value;
+          }
+          return gasStation;
+        });
+        prevRef.current = area;
       });
   };
 
@@ -41,7 +48,7 @@ const App = () => {
   ) : (
     <div className="container">
       <Header />
-      <Map gasStation={gasStation} clickCard={clickCard} />
+      <Map gasStation={gasStation} clickCard={clickCard} prevRef={prevRef} />
       <Buttons onButtonClick={updateGasStation} />
       <CardList gasStation={gasStation} showCard={showCard} />
     </div>

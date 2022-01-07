@@ -27,16 +27,44 @@ class KakaoMap {
     this.map.setLevel(level);
   }
 
-  addMarkers(positions) {
-    this.markers = positions.map(
-      ({ lat, lng }) =>
-        new this.maps.Marker({ position: new this.maps.LatLng(lat, lng) })
-    );
-    this.clusterer.addMarkers(this.markers);
+  addMarkers(gasStation) {
+    this.markers = {};
+    gasStation.forEach(({ code, lat, lng }) => {
+      this.markers[code] = new this.maps.Marker({
+        position: new this.maps.LatLng(lat, lng),
+      });
+    });
+    this.clusterer.addMarkers(Object.values(this.markers));
   }
 
   deleteMarkers() {
-    this.clusterer.removeMarkers(this.markers);
+    this.markers && this.clusterer.removeMarkers(Object.values(this.markers));
+  }
+
+  addInfoWindow(card) {
+    const { addr, inventory, name, price, regDt, tel, lat, lng, code } = card;
+    this.iwContent = `<div>
+      <p>${name}</p>
+      <p>${addr}</p>
+      <p>재고:${inventory}</p>
+      <p>가격:${price}</p>
+      <p>${tel}</p>
+      <p>${regDt}</p>
+      </div>`;
+    this.infowindow = new this.maps.InfoWindow({
+      position: new this.maps.LatLng(lat, lng),
+      content: this.iwContent,
+      range: 200,
+      zIndex: 1,
+      removable: true,
+    });
+    this.infowindow.open(this.map, this.markers[code]);
+  }
+
+  deleteInfoWindow() {
+    this.maps.event.addListener(this.map, 'zoom_changed', () => {
+      this.infowindow && this.infowindow.close();
+    });
   }
 }
 

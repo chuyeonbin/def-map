@@ -7,22 +7,16 @@ const map = new KakaoMap();
 const Map = ({ gasStation, clickCard }) => {
   const container = useRef(null);
 
-  //주유소 위도 경도
-  const positions = gasStation.map(item => ({
-    lat: item.lat,
-    lng: item.lng,
-  }));
-
   useEffect(() => {
     map.setMap(container);
     map.setClusterer();
-    map.addMarkers(positions);
+    map.deleteInfoWindow();
   }, []);
 
   useEffect(() => {
     if (gasStation.length > 0) {
       map.deleteMarkers();
-      map.addMarkers(positions);
+      map.addMarkers(gasStation);
       map.setLevel(13);
       map.setCenter(36.2683, 127.6358);
     }
@@ -33,6 +27,7 @@ const Map = ({ gasStation, clickCard }) => {
       window.scrollTo(0, 0);
       map.setLevel(4);
       map.setCenter(clickCard.lat, clickCard.lng);
+      map.addInfoWindow(clickCard);
     }
   }, [clickCard]);
 
