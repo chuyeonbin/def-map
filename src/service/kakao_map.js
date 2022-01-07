@@ -5,6 +5,7 @@ class KakaoMap {
       center: new this.maps.LatLng(36.2683, 127.6358),
       level: 13,
     };
+    this.infowindows = {};
   }
 
   setMap(container) {
@@ -29,11 +30,22 @@ class KakaoMap {
 
   addMarkers(gasStation) {
     this.markers = {};
-    gasStation.forEach(({ code, lat, lng }) => {
+    gasStation.forEach(({ code, lat, lng }, index) => {
+      //marker를 markers 배열에 저장
       this.markers[code] = new this.maps.Marker({
         position: new this.maps.LatLng(lat, lng),
       });
+
+      //marker 클릭시 인포윈도우 띄우기 이벤트
+      this.maps.event.addListener(
+        this.markers[code],
+        'click',
+        (card => {
+          return () => this.addInfoWindow(card);
+        })(gasStation[index])
+      );
     });
+
     this.clusterer.addMarkers(Object.values(this.markers));
   }
 
@@ -43,6 +55,11 @@ class KakaoMap {
 
   addInfoWindow(card) {
     const { addr, inventory, name, price, regDt, tel, lat, lng, code } = card;
+
+    if (Object.keys(this.infowindows).find(item => item === code)) {
+      return;
+    }
+
     this.iwContent = `<div>
       <p>${name}</p>
       <p>${addr}</p>
@@ -58,12 +75,18 @@ class KakaoMap {
       zIndex: 1,
       removable: true,
     });
+    this.infowindows[code] = this.infowindow;
     this.infowindow.open(this.map, this.markers[code]);
   }
 
   deleteInfoWindow() {
     this.maps.event.addListener(this.map, 'zoom_changed', () => {
-      this.infowindow && this.infowindow.close();
+      if (Object.values(this.infowindows).length > 0) {
+        Object.values(this.infowindows).forEach(infowindow =>
+          infowindow.close()
+        );
+        this.infowindows = {};
+      }
     });
   }
 }

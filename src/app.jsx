@@ -17,15 +17,14 @@ const App = () => {
 
   //주유소 업데이트
   const updateGasStation = area => {
+    if (prevRef.current === area) {
+      return;
+    }
+    setGasStation([]);
     datas
       .fetchData(area) //
       .then(value => {
-        setGasStation(gasStation => {
-          if (area !== prevRef.current) {
-            return value;
-          }
-          return gasStation;
-        });
+        setGasStation(value);
         prevRef.current = area;
       });
   };
