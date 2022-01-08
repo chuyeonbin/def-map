@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './card.module.css';
 
-const Card = ({ card, showCard }) => {
+const Card = memo(({ card, showCard }) => {
   const onClick = () => {
     showCard(card);
   };
@@ -40,6 +40,6 @@ const Card = ({ card, showCard }) => {
       </footer>
     </li>
   );
-};
+});
 
 export default Card;

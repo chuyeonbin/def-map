@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './app.css';
 import DefStation from './service/def_station';
 import Map from './components/map/map';
@@ -16,23 +16,25 @@ const App = () => {
 
   const prevRef = useRef('경기');
   //주유소 업데이트
-  const updateGasStation = area => {
-    if (prevRef.current === area) {
-      return;
-    }
-    setGasStation([]);
-    datas
-      .fetchData(area, sort) //
-      .then(value => {
-        setGasStation(value);
-        prevRef.current = area;
-      });
-  };
+  const updateGasStation = useCallback(
+    area => {
+      if (prevRef.current === area) {
+        return;
+      }
+      datas
+        .fetchData(area, sort) //
+        .then(value => {
+          setGasStation(value);
+          prevRef.current = area;
+        });
+    },
+    [sort]
+  );
 
   //클릭한 카드 지도에 보여주기
-  const showCard = card => {
+  const showCard = useCallback(card => {
     setClickCard(card);
-  };
+  }, []);
 
   //주유소 정렬하기
   const sortChange = () => {
@@ -72,9 +74,6 @@ function sortGasStation(gasStation, sort) {
   if (sort) {
     sortValue = [...gasStation].sort((a, b) => {
       if (a.price < b.price) return -1;
-    });
-    sortValue.map(value => {
-      console.log(value.name, value.price);
     });
   } else {
     sortValue = [...gasStation].sort((a, b) => b.inventory - a.inventory);

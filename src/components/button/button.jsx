@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './button.module.css';
 
-const Button = ({ name, onButtonClick }) => {
+const Button = memo(({ name, onButtonClick }) => {
   const onClick = () => {
     onButtonClick(name);
   };
@@ -11,6 +11,6 @@ const Button = ({ name, onButtonClick }) => {
       {name}
     </button>
   );
-};
+});
 
 export default Button;

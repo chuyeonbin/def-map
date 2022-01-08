@@ -13,7 +13,9 @@ class DefStation {
     if (sort) {
       return datas.data.data.sort((a, b) => b.inventory - a.inventory);
     }
-    return datas.data.data.sort((a, b) => a.price - b.price);
+    return datas.data.data.sort((a, b) => {
+      if (a.price < b.price) return -1;
+    });
   }
 }
 

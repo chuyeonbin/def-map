@@ -73,7 +73,7 @@ class KakaoMap {
       content: this.iwContent,
       range: 200,
       zIndex: 1,
-      removable: true,
+      removable: false,
     });
     this.infowindows[code] = this.infowindow;
     this.infowindow.open(this.map, this.markers[code]);

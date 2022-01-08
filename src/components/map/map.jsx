@@ -24,7 +24,7 @@ const Map = ({ gasStation, clickCard }) => {
 
   useEffect(() => {
     if (clickCard) {
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
       map.setLevel(4);
       map.setCenter(clickCard.lat, clickCard.lng);
       map.addInfoWindow(clickCard);

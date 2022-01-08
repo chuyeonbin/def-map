@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Button from '../button/button';
 import styles from './buttons.module.css';
 
@@ -22,7 +22,7 @@ const local = [
   '충북',
 ];
 
-const Buttons = ({ onButtonClick }) => {
+const Buttons = memo(({ onButtonClick }) => {
   return (
     <>
       <h1 className={styles.title}>지역</h1>
@@ -35,6 +35,6 @@ const Buttons = ({ onButtonClick }) => {
       </ul>
     </>
   );
-};
+});
 
 export default Buttons;
