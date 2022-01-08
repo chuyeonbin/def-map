@@ -1,12 +1,21 @@
-@value regular from '../../common/size.css';
+@value large, regular from '../../common/size.css';
+@value colorGrey from '../../common/color.css';
 
-.section {
-  padding: 1rem;
+.header {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
   font-size: regular;
-  margin-bottom: 1rem;
+}
+
+.sort {
+  font-size: large;
+  color: colorGrey;
+  cursor: pointer;
 }
 
 .cards {
