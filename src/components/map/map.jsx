@@ -10,7 +10,7 @@ const Map = ({ gasStation, clickCard }) => {
   useEffect(() => {
     map.setMap(container);
     map.setClusterer();
-    map.deleteInfoWindow();
+    map.deleteCustomOverlay();
   }, []);
 
   useEffect(() => {
@@ -24,10 +24,10 @@ const Map = ({ gasStation, clickCard }) => {
 
   useEffect(() => {
     if (clickCard) {
-      // window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
       map.setLevel(4);
       map.setCenter(clickCard.lat, clickCard.lng);
-      map.addInfoWindow(clickCard);
+      map.addCustomOverlay(clickCard);
     }
   }, [clickCard]);
 

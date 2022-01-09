@@ -5,7 +5,7 @@ class KakaoMap {
       center: new this.maps.LatLng(36.2683, 127.6358),
       level: 13,
     };
-    this.infowindows = {};
+    this.customOverlayArr = [];
   }
 
   setMap(container) {
@@ -36,12 +36,12 @@ class KakaoMap {
         position: new this.maps.LatLng(lat, lng),
       });
 
-      //marker 클릭시 인포윈도우 띄우기 이벤트
+      //marker 클릭시 커스텀오버레이 띄우기 이벤트
       this.maps.event.addListener(
         this.markers[code],
         'click',
         (card => {
-          return () => this.addInfoWindow(card);
+          return () => this.addCustomOverlay(card);
         })(gasStation[index])
       );
     });
@@ -53,39 +53,39 @@ class KakaoMap {
     this.markers && this.clusterer.removeMarkers(Object.values(this.markers));
   }
 
-  addInfoWindow(card) {
-    const { addr, inventory, name, price, regDt, tel, lat, lng, code } = card;
+  addCustomOverlay(card) {
+    const { addr, inventory, name, price, regDt, tel, lat, lng } = card;
 
-    if (Object.keys(this.infowindows).find(item => item === code)) {
-      return;
-    }
+    const position = new this.maps.LatLng(lat, lng);
 
-    this.iwContent = `<div>
+    const content = `<div style="padding: 1rem; background: white; border-radius: 22px;"> 
       <p>${name}</p>
       <p>${addr}</p>
-      <p>재고:${inventory}</p>
-      <p>가격:${price}</p>
+      <p>재고량:${inventory}L</p>
+      <p>가격:${price || 0}원</p>
       <p>${tel}</p>
-      <p>${regDt}</p>
-      </div>`;
-    this.infowindow = new this.maps.InfoWindow({
-      position: new this.maps.LatLng(lat, lng),
-      content: this.iwContent,
-      range: 200,
+      <p>업데이트:${regDt}</p>
+    </div>`;
+
+    this.customOverlay = new this.maps.CustomOverlay({
+      position: position,
+      content: content,
+      xAnchor: 0.3,
+      yAnchor: 1.4,
       zIndex: 1,
-      removable: false,
     });
-    this.infowindows[code] = this.infowindow;
-    this.infowindow.open(this.map, this.markers[code]);
+
+    this.customOverlayArr.push(this.customOverlay);
+    this.customOverlay.setMap(this.map);
   }
 
-  deleteInfoWindow() {
+  deleteCustomOverlay() {
     this.maps.event.addListener(this.map, 'zoom_changed', () => {
-      if (Object.values(this.infowindows).length > 0) {
-        Object.values(this.infowindows).forEach(infowindow =>
-          infowindow.close()
+      if (this.customOverlayArr.length > 0) {
+        this.customOverlayArr.forEach(customOverlay =>
+          customOverlay.setMap(null)
         );
-        this.infowindows = {};
+        this.CustomOverlayArr = [];
       }
     });
   }
