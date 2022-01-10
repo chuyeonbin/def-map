@@ -7,7 +7,7 @@
 배포: [https://61daef0b89e2053b4af95c5e--yososu-map.netlify.app](https://61daef0b89e2053b4af95c5e--yososu-map.netlify.app)
 
 ## 기술스택 🛠
-* es6
+* Javascript
 * React
 * Post-css
 * 공공데이터(환경부_요소수 정보제공 주유소 재고현황 조회서비스) api
@@ -21,4 +21,8 @@
 2. 버튼 클릭시 카드리스트 업데이트, 재고량 & 가격순 정렬 기능
 
 ![ezgif com-gif-maker (2)](https://user-images.githubusercontent.com/40565619/148743671-15d6e37c-1b73-4f49-8345-13ae5b63d54b.gif)
+
+3. 카드 클릭시 지도에 주유소 정보 표시
+
+![KakaoTalk_Photo_2022-01-10-19-00-12](https://user-images.githubusercontent.com/40565619/148774864-09a7a71a-d720-4aaf-b188-dd7f6614285e.gif)
 
