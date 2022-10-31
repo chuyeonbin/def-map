@@ -4,7 +4,9 @@
 
 <hr />
 
-배포: [https://61daef0b89e2053b4af95c5e--yososu-map.netlify.app](https://61daef0b89e2053b4af95c5e--yososu-map.netlify.app)
+<del>배포: [https://61daef0b89e2053b4af95c5e--yososu-map.netlify.app](https://61daef0b89e2053b4af95c5e--yososu-map.netlify.app)</del>
+
+22.10.19일 환경부_요소수 정보제공 주유소 재고현황 조회서비스 폐기
 
 ## 기술스택 🛠
 * Javascript
